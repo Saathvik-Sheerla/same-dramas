@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/Saathvik-Sheerla/practise#readme",
   "dependencies": {
-    "express": "^4.21.0"
+    "body-parser": "^1.20.3",
+    "ejs": "^3.1.10",
+    "express": "^4.21.0",
+    "wikipedia": "^2.1.2"
   }
 }
