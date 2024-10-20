@@ -17,9 +17,12 @@
   },
   "homepage": "https://github.com/Saathvik-Sheerla/practise#readme",
   "dependencies": {
+    "@google/generative-ai": "^0.21.0",
     "body-parser": "^1.20.3",
     "ejs": "^3.1.10",
     "express": "^4.21.0",
+    "nodemon": "^3.1.7",
+    "openai": "^4.67.3",
     "wikipedia": "^2.1.2"
   }
 }
