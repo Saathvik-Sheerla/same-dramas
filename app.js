@@ -4,7 +4,7 @@ const wiki = require("wikipedia");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const genAI = new GoogleGenerativeAI("AIzaSyDgrPgEeLdK8NlAOc5cj4Uc3DCMohzEjk0");
 const { capitalize } = require("./capitalize");
-let { moviesData } = require("./movies");
+let { recMoviesData } = require("./movies");
 const app = express();
 const bodyParser = require("body-parser");
 const path = require("path");
@@ -55,7 +55,8 @@ async function getMovieInfo(name) {
   }
 }
 
-let movies = moviesData;
+let movies = recMoviesData;
+let movieName = 'Avenger Endgame';
 // getMovieInfo('Guntur Kaaram');
 
 app.get("/", (req, res) => {
@@ -63,12 +64,12 @@ app.get("/", (req, res) => {
 });
 
 app.get("/home", (req, res) => {
-  let newMovies = movies;
-  res.render("home", { movies });
+  newMovie = movieName;
+  res.render("home", { movies , newMovie});
 });
 
 app.post('/moremovies', async (req, res)=>{
-  let movieName = movies[1].title;
+  movieName = movies[1].title;
   movieName = capitalize(movieName);
   const response = await getMovieInfo(movieName);
   if (response && response.originalimage && response.title) {
@@ -105,12 +106,15 @@ app.post('/moremovies', async (req, res)=>{
     } else {
       console.error("reccsData is undefined. Cannot access movies.");
     }
+    console.log("MOVIES ",movies);
+    movieName = newMovie;
   }
+  
   setTimeout(()=>(res.redirect("/home")), 2000);
 });
 
 app.post("/movie", async (req, res) => {
-  let movieName = req.body.moviename;
+  movieName = req.body.moviename;
   movieName = capitalize(movieName);
   const response = await getMovieInfo(movieName);
   if (response && response.originalimage && response.title) {
@@ -148,7 +152,7 @@ app.post("/movie", async (req, res) => {
       console.error("reccsData is undefined. Cannot access movies.");
     }
 
-    movies.unshift(newMovie);
+    movieName = newMovie;
     
   }
   setTimeout(()=>(res.redirect("/home")), 3000);
