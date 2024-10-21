@@ -31,7 +31,7 @@ const model = genAI.getGenerativeModel({
 async function getSimilarMovies(movie) {
   const result =
     await model.generateContent(
-      `suggest exactly 3 similar movies to this movie ,focus on director and movie theme and main lead characters,
+      `suggest exactly 5 similar movies to this movie ,focus on director and movie theme and main lead characters,
       if that movie has prequel and sequels then give them and one very closely related movie, give all three as separate json: ${movie} ,using this JSON schema:
         {json}
         Return: Array<Movie>`);
