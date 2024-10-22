@@ -1,8 +1,9 @@
 const express = require("express");
 const ejs = require("ejs");
+require('dotenv').config();
 const wiki = require("wikipedia");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
-const genAI = new GoogleGenerativeAI("AIzaSyDgrPgEeLdK8NlAOc5cj4Uc3DCMohzEjk0");
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const { capitalize } = require("./capitalize");
 let { recMoviesData } = require("./movies");
 const app = express();
